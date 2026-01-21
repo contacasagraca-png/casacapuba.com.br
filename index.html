@@ -400,6 +400,16 @@
             margin-top: 30px;
         }
 
+        /* Make the "Mostrar todas as comodidades" text dark red as requested */
+        .show-all-btn .btn.btn-outline {
+            color: #7a0b0b;           /* dark red text */
+            border-color: #7a0b0b;    /* matching border */
+        }
+        .show-all-btn .btn.btn-outline:hover {
+            background: #7a0b0b;
+            color: #fff;
+        }
+
         /* POR QUE ESCOLHER */
         .benefits-section {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -868,18 +878,18 @@
             <div class="hero-carousel-slides" id="heroSlides">
                 <!-- ↓↓↓ COLOQUE OS LINKS DAS 5 IMAGENS DO HERO AQUI ↓↓↓ -->
                 <div class="hero-carousel-slide">
-                    <img src="https://i.imgur.com/edbxyMj.jpeg" alt="Hero 1">
+                    <img src="https://i.imgur.com/btjmtGV.jpeg." alt="Hero 1">
                 </div>
                 <div class="hero-carousel-slide">
-                    <img src="https://i.imgur.com/HqbUYus.jpeg" alt="Hero 2">
+                    <img src="https://i.imgur.com/dsSWUuu.jpeg" alt="Hero 2">
                 </div>
                 <div class="hero-carousel-slide">
-                    <img src="https://i.imgur.com/dsSWUuu.jpeg" alt="Hero 3">
+                    <img src="https://i.imgur.com/sEPrshf.jpeg" alt="Hero 3">
                 </div>
                 <div class="hero-carousel-slide">
-                    <img src="https://i.imgur.com/sEPrshf.jpeg" alt="Hero 4">
+                    <img src="https://i.imgur.com/nDpGSOj.jpeg" alt="Hero 4">
                 </div>
-                <div class="hero-carousel-slide">
+                div class="hero-carousel-slide">
                     <img src="https://i.imgur.com/nDpGSOj.jpeg" alt="Hero 5">
                 </div>
                 <!-- ↑↑↑ FIM DOS LINKS DAS IMAGENS DO HERO ↑↑↑ -->
@@ -1618,6 +1628,198 @@
         </div>
     </section>
 
+    <!-- --- MODAL CALENDÁRIO CUSTOMIZADO --- -->
+    <div id="customCalendarModal" class="custom-calendar-modal" onclick="if(event.target.id==='customCalendarModal') closeCustomCalendar()">
+        <div class="custom-calendar-content">
+            <button class="calendar-close-btn" onclick="closeCustomCalendar()">×</button>
+            <div class="calendar-title" id="calendarTitle"></div>
+            <div class="calendar-controls">
+                <button id="calendarPrevMonth">&lt;</button>
+                <span id="calendarMonthText"></span>
+                <button id="calendarNextMonth">&gt;</button>
+            </div>
+            <div class="calendar-grid" id="calendarGrid"></div>
+            <div class="calendar-footer-hint">
+                <span style="display:inline-block;width:14px;height:14px;vertical-align:middle;background:#d6f5d6;border-radius:2.5px;margin-right:2px;"></span> Disponível
+                <span style="display:inline-block;width:14px;height:14px;vertical-align:middle;background:#f8d1d1;border-radius:2.5px;margin:0 4px 0 10px;"></span> Reservado
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================
+         NOVA SESSÃO: CTA AIRBNB + BOOKING
+         Inserida IMEDIATAMENTE ANTES DO <footer> (conforme solicitado)
+         ============================ -->
+    <style>
+        /* Estilos exclusivos para a sessão Airbnb & Booking CTA (não altera o restante do site) */
+        .airbnb-cta-section {
+            padding: 48px 20px;
+            margin-top: 12px;
+        }
+        .airbnb-cta {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: linear-gradient(180deg, #0f444c 0%, #143f46 100%);
+            border-radius: 22px;
+            padding: 42px 36px;
+            box-shadow: 0 30px 60px rgba(10, 30, 35, 0.18);
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .airbnb-cta-inner {
+            text-align: center;
+            width: 100%;
+        }
+        .airbnb-cta h3 {
+            font-size: 28px;
+            line-height: 1.15;
+            font-weight: 700;
+            margin-bottom: 18px;
+            color: #ffffff;
+            text-shadow: 0 2px 0 rgba(0,0,0,0.15);
+        }
+        .airbnb-cta p {
+            font-size: 18px;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.95);
+            max-width: 920px;
+            margin: 0 auto 28px;
+            opacity: 0.98;
+        }
+        .airbnb-cta-actions {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+
+        .airbnb-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            padding: 16px 34px;
+            border-radius: 14px;
+            text-decoration: none;
+            color: #fff;
+            font-weight: 700;
+            font-size: 18px;
+            background: linear-gradient(90deg, #ff6b6b 0%, #ff4b6b 100%);
+            box-shadow: 0 12px 30px rgba(255,75,106,0.18);
+            border: none;
+            transition: transform 0.18s ease, box-shadow 0.18s ease;
+        }
+        .airbnb-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.18);
+        }
+        .airbnb-btn .airbnb-icon {
+            display:inline-flex;
+            align-items:center;
+            justify-content:center;
+            width:40px;
+            height:40px;
+            border-radius:10px;
+            background: rgba(255,255,255,0.08);
+            flex-shrink:0;
+        }
+        .airbnb-btn .airbnb-icon img {
+            width:20px;
+            height:20px;
+            display:block;
+        }
+
+        /* Booking button styles */
+        .booking-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 28px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 17px;
+            background: linear-gradient(90deg, #005b9a 0%, #0071c2 100%);
+            box-shadow: 0 10px 26px rgba(0,88,150,0.16);
+            border: none;
+            transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s;
+        }
+        .booking-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 18px 36px rgba(0,0,0,0.18);
+            opacity: 0.98;
+        }
+        .booking-btn .booking-icon {
+            display:inline-flex;
+            align-items:center;
+            justify-content:center;
+            width:36px;
+            height:36px;
+            border-radius:8px;
+            background: rgba(255,255,255,0.06);
+            flex-shrink:0;
+        }
+        .booking-btn .booking-icon img {
+            width:24px;
+            height:24px;
+            display:block;
+        }
+
+        @media (max-width: 768px) {
+            .airbnb-cta {
+                padding: 28px 20px;
+                border-radius: 16px;
+            }
+            .airbnb-cta h3 { font-size: 20px; }
+            .airbnb-cta p { font-size: 15px; margin-bottom: 20px; }
+            .airbnb-btn { padding: 12px 18px; font-size: 16px; gap:10px; }
+            .airbnb-btn .airbnb-icon { width:34px; height:34px; border-radius:8px; }
+            .booking-btn { padding: 10px 14px; font-size: 15px; gap:8px; }
+            .booking-btn .booking-icon { width:30px; height:30px; border-radius:6px; }
+        }
+    </style>
+
+    <!-- The Airbnb + Booking CTA is placed immediately above the footer (per your request) -->
+    <section class="airbnb-cta-section" aria-labelledby="airbnbCtaTitle">
+        <div class="airbnb-cta" role="region" aria-label="Reservar no Airbnb ou Booking">
+            <div class="airbnb-cta-inner">
+                <h3 id="airbnbCtaTitle">Quer fazer sua reserva diretamente pelo site oficial do Airbnb ou ?</h3>
+                <p>
+                    Se preferir reservar pelo anúncio oficial, utilize o link abaixo para acessar nosso anúncio no Airbnb ou Booking.
+                    Lá você confirma disponibilidade, preços e faz a reserva com segurança diretamente pela plataforma.
+                </p>
+
+                <div class="airbnb-cta-actions">
+                    <!-- Botão que direciona para o anúncio oficial do Airbnb -->
+                    <a class="airbnb-btn"
+                       href="https://www.airbnb.com.br/rooms/1155625932564787455?viralityEntryPoint=1&s=76"
+                       target="_blank" rel="noopener noreferrer" aria-label="Reservar no Airbnb (abre em nova aba)">
+                        <span class="airbnb-icon" aria-hidden="true">
+                            <!-- Ícone PNG fornecido: https://i.imgur.com/Cgrflg5.png -->
+                            <img src="https://i.imgur.com/Cgrflg5.png" alt="Airbnb logo">
+                        </span>
+                        Reservar no Airbnb
+                    </a>
+
+                    <!-- Novo: Botão que direciona para o anúncio no Booking -->
+                    <a class="booking-btn"
+                       href="https://www.booking.com/hotel/br/temporadacapuba-serra.pt-br.html"
+                       target="_blank" rel="noopener noreferrer" aria-label="Reservar no Booking (abre em nova aba)">
+                        <span class="booking-icon" aria-hidden="true">
+                            <!-- Ícone PNG fornecido: https://i.imgur.com/oBzPEKe.png -->
+                            <img src="https://i.imgur.com/oBzPEKe.png" alt="Booking logo">
+                        </span>
+                        Reservar no Booking
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ============================ FIM DA SESSÃO AIRBNB + BOOKING ============================ -->
+
     <!-- FOOTER -->
     <footer>
         <div class="footer-content">
@@ -1928,7 +2130,7 @@ Além disso:
         // HERO CAROUSEL
         let heroSlide = 0;
         const heroSlides = document.getElementById('heroSlides');
-        const heroTotal = 5;
+        const heroTotal = 4;
 
         function moveHeroCarousel() {
             heroSlide = (heroSlide + 1) % heroTotal;
@@ -2300,9 +2502,7 @@ Além disso:
     </script>
 
     <style>
-        /* ... [TODO: all styles exactly as your original. Not shown for brevity] ... */
-        /* SEU CSS AQUI FOI MANTIDO EXATAMENTE IGUAL */
-        /* ↓↓↓ ESTILOS PARA O CALENDÁRIO CUSTOMIZADO ↓↓↓ */
+        /* SEUS ESTILOS DO CALENDÁRIO (mantidos) */
         .custom-calendar-modal {
             display: none;
             position: fixed;
@@ -2423,35 +2623,9 @@ Além disso:
         @media (max-width: 599px) {
             .custom-calendar-content { max-width: 97vw; padding: 12px 5px 9px;}
         }
-        /* ↑↑↑ FIM DOS ESTILOS DO CALENDÁRIO ↑↑↑ */
     </style>
-</head>
-<body>
-    <!-- ... [TODO: tudo igual ao seu original] ... -->
-    <!-- [SEU HTML PERMANECEU INALTERADO ATÉ O FINAL] -->
-
-    <!-- --- MODAL CALENDÁRIO CUSTOMIZADO --- -->
-    <div id="customCalendarModal" class="custom-calendar-modal" onclick="if(event.target.id==='customCalendarModal') closeCustomCalendar()">
-        <div class="custom-calendar-content">
-            <button class="calendar-close-btn" onclick="closeCustomCalendar()">×</button>
-            <div class="calendar-title" id="calendarTitle"></div>
-            <div class="calendar-controls">
-                <button id="calendarPrevMonth">&lt;</button>
-                <span id="calendarMonthText"></span>
-                <button id="calendarNextMonth">&gt;</button>
-            </div>
-            <div class="calendar-grid" id="calendarGrid"></div>
-            <div class="calendar-footer-hint">
-                <span style="display:inline-block;width:14px;height:14px;vertical-align:middle;background:#d6f5d6;border-radius:2.5px;margin-right:2px;"></span> Disponível
-                <span style="display:inline-block;width:14px;height:14px;vertical-align:middle;background:#f8d1d1;border-radius:2.5px;margin:0 4px 0 10px;"></span> Reservado
-            </div>
-        </div>
-    </div>
 
     <script>
-        // [SEU JS CONTINUA IGUAL ATÉ initReservationForm]
-        /* ... [Todo o JS original acima continua igual] ... */
-
         // ↓↓↓ INÍCIO DO CÓDIGO DE CALENDÁRIO PERSONALIZADO COM AIRBNB iCAL ↓↓↓
         
         // ✅ CONFIGURAÇÃO AIRBNB iCAL
@@ -2687,14 +2861,3 @@ Além disso:
     <!-- Fim body e html -->
 </body>
 </html>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Casa de Temporada Capuba - Jacaraípe, ES</title>
-    <!-- Todo o CSS do seu arquivo está incluso aqui! -->
-    <!-- ... [Demais estilos completos já inclusos acima. Não alterados.] ... -->
-    <style>
-        /* [Seu CSS completo] */
-        /* ... o conteúdo do style é igual ao enviado ... */
-    </style>
-</head>
-<body>
